@@ -6,7 +6,7 @@
     # company_name:string
     # greenwashing_score: (0-100)
     # claims_vs_reality: list of objects (e.g., claim vs. actual finding)
-    # emissions_data: list of years ans tonnage (frontend charts)
+    # emissions_data: list of years and tonnage (frontend charts)
 
 from flask import Flask, render_template, request, redirect, session
 
@@ -15,10 +15,10 @@ app = Flask(__name__)
 @app.route("/api/analyze", methods=['POST'])
 
 def analyze_company():
-    request.get_json(company_name)
+    data = request.get_json()
     mock_dict = {
-        "company_name": "Boeing",
+        "company_name": data["company_name"],
         "greenwashing_score": 63,
-        "claims_vs_reality": list,
-        "emissions_data": 1
+        "claims_vs_reality": [{"claim": "...", "reality": "..."}],
+        "emissions_data": [{"year": 2023, "tonnage": 1200}, {"year": 2024, "tonnage": 1250}]
     }
