@@ -1,4 +1,4 @@
-# Built out Mock API First
+# Build out Mock API First
 
 # write POST /api/analyze route
 # Accept company name in JSON payload, return mock JSON data
@@ -9,6 +9,7 @@
     # emissions_data: list of years and tonnage (frontend charts)
 
 from flask import Flask, render_template, request, redirect, session
+from services import climate_service
 
 app = Flask(__name__)
 
@@ -16,13 +17,7 @@ app = Flask(__name__)
 
 def analyze_company():
     data = request.get_json()
-    mock_dict = {
-        "company_name": data["company_name"],
-        "greenwashing_score": 63,
-        "claims_vs_reality": [{"claim": "...", "reality": "..."}],
-        "emissions_data": [{"year": 2023, "tonnage": 1200}, {"year": 2024, "tonnage": 1250}]
-    }
-    return mock_dict
-
+    return climate_service.get_company_analysis(data["company_name"])
+    
 if __name__ == "__main__":
     app.run(debug=True)
