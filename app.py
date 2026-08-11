@@ -22,3 +22,7 @@ def analyze_company():
         "claims_vs_reality": [{"claim": "...", "reality": "..."}],
         "emissions_data": [{"year": 2023, "tonnage": 1200}, {"year": 2024, "tonnage": 1250}]
     }
+    return mock_dict
+
+if __name__ == "__main__":
+    app.run(debug=True)
